@@ -29,8 +29,7 @@ class Product
     #[ORM\Column]
     public int $tax;
 
-    #[ORM\Version]
-    #[ORM\Column(type: Types::INTEGER)]
+    #[ORM\Column]
     public int $version;
 
     public function __construct(int $id, string $name, ProductMeasurements $measurements, ?string $description, int $cost, int $tax, int $version)
