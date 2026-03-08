@@ -27,6 +27,7 @@ final readonly class ProductUpdatedHandler
         $product = $this->getProductById($dto->id);
 
         if ($dto->version <= $product->version) {
+            // TODO мб логировать, хотя возможно лучше логировать все сообщения из кафки
             return;
         }
 

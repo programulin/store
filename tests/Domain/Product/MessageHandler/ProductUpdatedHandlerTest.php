@@ -50,7 +50,7 @@ class ProductUpdatedHandlerTest extends KernelTestCase
         $this->em->persist($product);
         $this->em->flush();
 
-
+        // TODO мб подумать над решением для быстрой генерации DTO
         $dto = new ProductDto(
             id: 1,
             name: 'New Name',
