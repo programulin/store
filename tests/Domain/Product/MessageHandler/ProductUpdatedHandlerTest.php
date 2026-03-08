@@ -4,9 +4,9 @@ declare(strict_types=1);
 
 namespace App\Tests\Domain\Product\MessageHandler;
 
-use App\Contracts\ProductManagement\DTO\Product as ProductDto;
-use App\Contracts\ProductManagement\DTO\ProductMeasurements as DtoMeasurements;
-use App\Contracts\ProductManagement\Messages\ProductUpdated;
+use App\Contract\ProductManagement\DTO\Product as ProductDto;
+use App\Contract\ProductManagement\DTO\ProductMeasurements as DtoMeasurements;
+use App\Contract\ProductManagement\Messages\ProductUpdated;
 use App\Domain\Product\Entity\Product;
 use App\Domain\Product\Entity\ProductMeasurements;
 use App\Domain\Product\Entity\ProductMeasurements as EntityMeasurements;

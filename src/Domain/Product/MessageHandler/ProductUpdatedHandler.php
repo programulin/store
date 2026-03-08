@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace App\Domain\Product\MessageHandler;
 
-use App\Contracts\ProductManagement\Messages\ProductUpdated;
+use App\Contract\ProductManagement\Messages\ProductUpdated;
 use App\Domain\Product\Entity\Product;
 use App\Domain\Product\Entity\ProductMeasurements;
 use App\Domain\Product\Repository\ProductRepository;

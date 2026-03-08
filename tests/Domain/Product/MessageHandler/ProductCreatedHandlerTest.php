@@ -4,9 +4,9 @@ declare(strict_types=1);
 
 namespace App\Tests\Domain\Product\MessageHandler;
 
-use App\Contracts\ProductManagement\DTO\Product as ProductDto;
-use App\Contracts\ProductManagement\DTO\ProductMeasurements as DtoMeasurements;
-use App\Contracts\ProductManagement\Messages\ProductCreated;
+use App\Contract\ProductManagement\DTO\Product as ProductDto;
+use App\Contract\ProductManagement\DTO\ProductMeasurements as DtoMeasurements;
+use App\Contract\ProductManagement\Messages\ProductCreated;
 use App\Domain\Product\Entity\Product;
 use App\Domain\Product\Entity\ProductMeasurements;
 use Doctrine\ORM\EntityManagerInterface;
