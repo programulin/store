@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-namespace App\Contract\ProductManagement\Client;
+namespace App\Domain\Product\Integration\Client;
 
-use App\Contract\ProductManagement\DTO\Product;
+use App\Domain\Product\Integration\DTO\Product;
 
 interface ProductClientInterface
 {

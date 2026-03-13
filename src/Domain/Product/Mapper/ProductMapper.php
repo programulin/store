@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace App\Domain\Product\Mapper;
 
-use App\Contract\ProductManagement\DTO\Product as ProductDTO;
-use App\Contract\ProductManagement\DTO\ProductMeasurements as ProductMeasurementsDTO;
+use App\Domain\Product\Integration\DTO\Product as ProductDTO;
+use App\Domain\Product\Integration\DTO\ProductMeasurements as ProductMeasurementsDTO;
 use App\Domain\Product\Entity\Product;
 use App\Domain\Product\Entity\ProductMeasurements;
 

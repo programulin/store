@@ -2,12 +2,12 @@
 
 declare(strict_types=1);
 
-namespace App\Contract\ProductManagement\Message;
+namespace App\Domain\Product\Integration\Message;
 
-use App\Contract\ProductManagement\DTO\Product;
+use App\Domain\Product\Integration\DTO\Product;
 use Symfony\Component\Validator\Constraints as Assert;
 
-final readonly class ProductUpdated
+final readonly class ProductCreated
 {
     public function __construct(
         #[Assert\Valid]

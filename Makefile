@@ -11,4 +11,4 @@ connect-db:
 	docker compose exec postgresql sh
 
 test:
-	docker compose exec php-fpm php bin/phpunit --display-notices
+	docker compose exec php-fpm php bin/phpunit --display-all-issues

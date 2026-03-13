@@ -4,18 +4,18 @@ declare(strict_types=1);
 
 namespace App\Domain\Product\Service;
 
-use App\Contract\ProductManagement\DTO\Product as ProductDTO;
+use App\Domain\Product\Integration\DTO\Product;
 use App\Domain\Product\Message\SyncProductBatchMessage;
 use Symfony\Component\Messenger\MessageBusInterface;
 
-final readonly class SyncProductService
+final readonly class SyncProductService implements SyncProductServiceInterface
 {
     public function __construct(
         private MessageBusInterface $messageBus,
     ) {}
 
     /**
-     * @param iterable<ProductDTO> $dtos
+     * @param iterable<Product> $dtos
      */
     public function execute(iterable $dtos): void
     {
@@ -36,7 +36,7 @@ final readonly class SyncProductService
     }
 
     /**
-     * @param ProductDTO[] $batch
+     * @param Product[] $batch
      */
     private function dispatchBatch(array $batch): void
     {

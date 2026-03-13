@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace App\Domain\Product\MessageHandler;
 
-use App\Contract\ProductManagement\DTO\Product as ProductDTO;
+use App\Domain\Product\Integration\DTO\Product as ProductDTO;
 use App\Domain\Product\Entity\Product;
 use App\Domain\Product\Mapper\ProductMapper;
 use App\Domain\Product\Message\SyncProductBatchMessage;

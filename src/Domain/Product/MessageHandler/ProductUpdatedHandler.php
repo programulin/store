@@ -4,15 +4,15 @@ declare(strict_types=1);
 
 namespace App\Domain\Product\MessageHandler;
 
-use App\Contract\ProductManagement\Message\ProductUpdated;
-use App\Domain\Product\Service\SyncProductService;
+use App\Domain\Product\Integration\Message\ProductUpdated;
+use App\Domain\Product\Service\SyncProductServiceInterface;
 use Symfony\Component\Messenger\Attribute\AsMessageHandler;
 
 #[AsMessageHandler]
 final readonly class ProductUpdatedHandler
 {
     public function __construct(
-        private SyncProductService $syncProductService,
+        private SyncProductServiceInterface $syncProductService,
     )
     {}
 
