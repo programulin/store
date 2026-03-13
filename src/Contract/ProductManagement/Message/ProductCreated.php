@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace App\Contract\ProductManagement\Messages;
+namespace App\Contract\ProductManagement\Message;
 
 use App\Contract\ProductManagement\DTO\Product;
 use Symfony\Component\Validator\Constraints as Assert;

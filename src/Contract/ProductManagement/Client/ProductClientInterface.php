@@ -13,5 +13,5 @@ interface ProductClientInterface
      *
      * @return Product[]
      */
-    public function getAllProducts(): array;
+    public function getAllProducts(): iterable;
 }
