@@ -6,6 +6,7 @@ namespace App\Domain\Product\Command;
 
 use App\Domain\Product\Integration\Client\ProductClientInterface;
 use App\Domain\Product\Service\SyncProductService;
+use App\Domain\Product\Service\SyncProductServiceInterface;
 use Exception;
 use Symfony\Component\Console\Attribute\AsCommand;
 use Symfony\Component\Console\Command\Command;
@@ -21,7 +22,7 @@ final class SyncProductsCommand extends Command
 {
     public function __construct(
         private readonly ProductClientInterface $productClient,
-        private readonly SyncProductService $syncService,
+        private readonly SyncProductServiceInterface $syncService,
     ) {
         parent::__construct();
     }
