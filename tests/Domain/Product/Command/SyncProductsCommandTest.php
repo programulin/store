@@ -45,7 +45,9 @@ final class SyncProductsCommandTest extends KernelTestCase
     public function testExecuteFailure(): void
     {
         $clientMock = $this->createMock(ProductClientInterface::class);
-        $clientMock->method('getAllProducts')
+        $clientMock
+            ->expects($this->once())
+            ->method('getAllProducts')
             ->willThrowException(new Exception('API Offline'));
 
         self::getContainer()->set(ProductClientInterface::class, $clientMock);

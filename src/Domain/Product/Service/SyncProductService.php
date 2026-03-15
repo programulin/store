@@ -19,6 +19,8 @@ final readonly class SyncProductService implements SyncProductServiceInterface
      */
     public function execute(iterable $dtos): void
     {
+        // TODO где должна быть валидация? Тут или в обработчики событий created и updated + клиенте api?
+
         $batch = [];
 
         foreach ($dtos as $dto) {
