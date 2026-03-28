@@ -8,6 +8,9 @@ use Symfony\Component\Validator\Constraints as Assert;
 
 final readonly class Product
 {
+    /**
+     * TODO более строкие правила
+     */
     public function __construct(
         #[Assert\Positive]
         public int $id,

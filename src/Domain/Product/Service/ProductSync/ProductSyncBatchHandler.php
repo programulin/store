@@ -2,30 +2,31 @@
 
 declare(strict_types=1);
 
-namespace App\Domain\Product\MessageHandler;
+namespace App\Domain\Product\Service\ProductSync;
 
 use App\Domain\Product\Integration\DTO\Product as ProductDTO;
 use App\Domain\Product\Entity\Product;
 use App\Domain\Product\Mapper\ProductMapper;
-use App\Domain\Product\Message\SyncProductBatchMessage;
+use App\Domain\Product\Message\ProductSyncBatch;
 use App\Domain\Product\Repository\ProductRepository;
 use Doctrine\ORM\EntityManagerInterface;
-use Symfony\Component\Messenger\Attribute\AsMessageHandler;
 
-#[AsMessageHandler]
-final readonly class SyncProductBatchHandler {
+final readonly class ProductSyncBatchHandler {
     public function __construct(
         private ProductRepository $productRepository,
         private EntityManagerInterface $entityManager,
         private ProductMapper $productMapper,
     ) {}
 
-    public function __invoke(SyncProductBatchMessage $message): void
+    /**
+     * @param ProductDTO[] $productDtos
+     */
+    public function execute(array $productDtos): void
     {
-        $this->entityManager->wrapInTransaction(function() use ($message) {
-            $productsMap = $this->getExistingProductsMap($message);
+        $this->entityManager->wrapInTransaction(function() use ($productDtos) {
+            $productsMap = $this->getExistingProductsMap($productDtos);
 
-            foreach ($message->dtos as $dto) {
+            foreach ($productDtos as $dto) {
                 isset($productsMap[$dto->id])
                     ? $this->handleUpdate($productsMap[$dto->id], $dto)
                     : $this->handleCreate($dto);
@@ -61,11 +62,12 @@ final readonly class SyncProductBatchHandler {
     }
 
     /**
+     * @param ProductDTO[] $productDtos
      * @return array<int, Product>
      */
-    private function getExistingProductsMap(SyncProductBatchMessage $message): array
+    private function getExistingProductsMap(array $productDtos): array
     {
-        $ids = array_map(fn($dto) => $dto->id, $message->dtos);
+        $ids = array_map(fn($dto) => $dto->id, $productDtos);
 
         $existingProducts = $this->productRepository->getProductsByIdsForUpdate($ids);
 

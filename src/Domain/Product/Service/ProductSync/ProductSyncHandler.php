@@ -2,31 +2,33 @@
 
 declare(strict_types=1);
 
-namespace App\Domain\Product\Service;
+namespace App\Domain\Product\Service\ProductSync;
 
 use App\Domain\Product\Integration\DTO\Product;
-use App\Domain\Product\Message\SyncProductBatchMessage;
+use App\Domain\Product\Message\ProductSyncBatch;
+use Symfony\Component\Messenger\Attribute\AsMessageHandler;
 use Symfony\Component\Messenger\MessageBusInterface;
 
-final readonly class SyncProductService implements SyncProductServiceInterface
+#[AsMessageHandler]
+final readonly class ProductSyncHandler
 {
     public function __construct(
         private MessageBusInterface $messageBus,
     ) {}
 
     /**
-     * @param iterable<Product> $dtos
+     * @param iterable<Product> $productDtos
      */
-    public function execute(iterable $dtos): void
+    public function execute(iterable $productDtos): void
     {
-        // TODO где должна быть валидация? Тут или в обработчики событий created и updated + клиенте api?
+        // TODO транзакция?
 
         $batch = [];
 
-        foreach ($dtos as $dto) {
+        foreach ($productDtos as $dto) {
             $batch[] = $dto;
 
-            if (count($batch) >= 100) {
+            if (count($batch) >= ProductSyncBatch::MAX_BATCH_SIZE) {
                 $this->dispatchBatch($batch);
                 $batch = [];
             }
@@ -42,6 +44,6 @@ final readonly class SyncProductService implements SyncProductServiceInterface
      */
     private function dispatchBatch(array $batch): void
     {
-        $this->messageBus->dispatch(new SyncProductBatchMessage($batch));
+        $this->messageBus->dispatch(new ProductSyncBatch($batch));
     }
 }

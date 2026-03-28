@@ -16,12 +16,6 @@ class ProductRepository extends ServiceEntityRepository
         parent::__construct($registry, Product::class);
     }
 
-    public function getById(int $id): ?Product
-    {
-        /** @var ?Product */
-        return $this->find($id);
-    }
-
     /**
      * @param int[] $ids
      * @return Product[]

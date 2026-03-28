@@ -6,7 +6,7 @@ namespace App\Tests\Domain\Product\Service;
 
 use App\Domain\Product\Integration\DTO\Product as ProductDTO;
 use App\Domain\Product\Integration\DTO\ProductMeasurements as ProductMeasurementsDTO;
-use App\Domain\Product\Message\SyncProductBatchMessage;
+use App\Domain\Product\Message\ProductSyncBatch;
 use App\Domain\Product\Service\SyncProductService;
 use PHPUnit\Framework\TestCase;
 use Symfony\Component\Messenger\Envelope;
@@ -29,7 +29,7 @@ class SyncProductServiceTest extends TestCase
         $bus
             ->expects($this->exactly(2))
             ->method('dispatch')
-            ->willReturnCallback(function (SyncProductBatchMessage $message) use (&$callCount) {
+            ->willReturnCallback(function (ProductSyncBatch $message) use (&$callCount) {
                 $callCount++;
                 $expectedDtosCount = $callCount === 1 ? 100 : 50;
 

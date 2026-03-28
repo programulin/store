@@ -20,7 +20,7 @@ final class SyncProductsCommandTest extends KernelTestCase
 
         $clientMock = $this->createMock(ProductClientInterface::class);
         $clientMock->expects($this->once())
-            ->method('getAllProducts')
+            ->method('getLatestSnapshot')
             ->willReturn([]);
 
         $syncServiceMock = $this->createMock(SyncProductServiceInterface::class);
@@ -47,7 +47,7 @@ final class SyncProductsCommandTest extends KernelTestCase
         $clientMock = $this->createMock(ProductClientInterface::class);
         $clientMock
             ->expects($this->once())
-            ->method('getAllProducts')
+            ->method('getLatestSnapshot')
             ->willThrowException(new Exception('API Offline'));
 
         self::getContainer()->set(ProductClientInterface::class, $clientMock);
