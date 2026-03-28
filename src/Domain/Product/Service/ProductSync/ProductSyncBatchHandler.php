@@ -7,7 +7,6 @@ namespace App\Domain\Product\Service\ProductSync;
 use App\Domain\Product\Integration\DTO\Product as ProductDTO;
 use App\Domain\Product\Entity\Product;
 use App\Domain\Product\Mapper\ProductMapper;
-use App\Domain\Product\Message\ProductSyncBatch;
 use App\Domain\Product\Repository\ProductRepository;
 use Doctrine\ORM\EntityManagerInterface;
 
